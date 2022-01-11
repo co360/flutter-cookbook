@@ -6,11 +6,19 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          _buildProfileImage(context),
-          _buildProfileDetails(context),
-          _buildActions(context),
+      body: Stack(
+        children: <Widget>[
+          Image.asset('assets/beach.jpg'),
+          Transform.translate(
+            offset: const Offset(0, 100),
+            child: Column(
+              children: [
+                _buildProfileImage(context),
+                _buildProfileDetails(context),
+                _buildActions(context),
+              ],
+            ),
+          ),
         ],
       ),
     );
@@ -39,8 +47,8 @@ class ProfileScreen extends StatelessWidget {
             'Wolfram Barkovich',
             style: TextStyle(fontSize: 35, fontWeight: FontWeight.w600),
           ),
-          _buildDetailsRow('Age', '4'),
-          _buildDetailsRow('Status', 'Good Boy'),
+          _buildDetailsRow('Age: ', '4'),
+          _buildDetailsRow('Status: ', 'Good Boy'),
         ],
       ),
     );
