@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class TextLayout extends StatelessWidget {
   @override
@@ -6,7 +7,7 @@ class TextLayout extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text('Hello, World', style: TextStyle(fontSize: 18)),
+        Text('Hello, World', style: GoogleFonts.leckerliOne(fontSize: 18)),
         Text('Text can wrap without issue',
             style: Theme.of(context).textTheme.headline6),
         Text(
