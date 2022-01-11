@@ -59,6 +59,25 @@ class ProfileScreen extends StatelessWidget {
   }
 
   Widget _buildActions(BuildContext context) {
-    return Container();
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        _buildIcon(Icons.restaurant, 'Feed'),
+        _buildIcon(Icons.favorite, 'Pet'),
+        _buildIcon(Icons.directions_walk, 'Walk'),
+      ],
+    );
+  }
+
+  Widget _buildIcon(IconData icon, String text) {
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Column(
+        children: <Widget>[
+          Icon(icon, size: 40),
+          Text(text),
+        ],
+      ),
+    );
   }
 }
