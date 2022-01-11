@@ -30,7 +30,32 @@ class ProfileScreen extends StatelessWidget {
   }
 
   Widget _buildProfileDetails(BuildContext context) {
-    return Container();
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            'Wolfram Barkovich',
+            style: TextStyle(fontSize: 35, fontWeight: FontWeight.w600),
+          ),
+          _buildDetailsRow('Age', '4'),
+          _buildDetailsRow('Status', 'Good Boy'),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildDetailsRow(String heading, String value) {
+    return Row(
+      children: <Widget>[
+        Text(
+          heading,
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
+        Text(value),
+      ],
+    );
   }
 
   Widget _buildActions(BuildContext context) {
