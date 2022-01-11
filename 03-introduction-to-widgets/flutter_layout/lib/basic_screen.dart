@@ -19,10 +19,7 @@ class BasicScreen extends StatelessWidget {
           ]),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          AspectRatio(aspectRatio: 1.0, child: ImmutableWidget()),
-          TextLayout()
-        ],
+        children: [Image.asset('assets/beach.jpg'), TextLayout()],
       ),
       drawer: Drawer(
         //side bar
