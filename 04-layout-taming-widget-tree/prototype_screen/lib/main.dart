@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prototype_screen/deep_tree.dart';
 import 'package:prototype_screen/flex_screen.dart';
 import 'package:prototype_screen/profile_screen.dart';
 
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: ProfileScreen(),
+      home: DeepTree(),
     );
   }
 }
