@@ -6,7 +6,8 @@ class FlexScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return SafeArea(
+        child: Scaffold(
       appBar: AppBar(
         title: const Text('Flexible and Expanded'),
       ),
@@ -21,7 +22,7 @@ class FlexScreen extends StatelessWidget {
           _buildFooter(context),
         ],
       ),
-    );
+    ));
   }
 
   Iterable<Widget> _header(BuildContext context, String text) {
