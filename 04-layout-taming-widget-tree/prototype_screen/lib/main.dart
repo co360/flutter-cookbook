@@ -15,6 +15,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        brightness: Brightness.light,
+        primaryColor: Colors.green,
+        appBarTheme: AppBarTheme(
+            elevation: 10,
+            textTheme: TextTheme(
+                headline6: TextStyle(fontFamily: 'Mukta', fontSize: 18))),
+      ),
       home: ECommerceScreen(),
     );
   }
