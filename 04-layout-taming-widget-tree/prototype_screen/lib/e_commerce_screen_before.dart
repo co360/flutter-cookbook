@@ -11,7 +11,7 @@ class ECommerceScreen extends StatelessWidget {
         child: SingleChildScrollView(
             child: Column(
           children: <Widget>[
-            _buildToggleBar(),
+            _buildToggleBar(context),
             //Image.asset('assets/woman_shopping.jpg'),
             DealButtons(),
             _buildProductTitle(context),
@@ -21,50 +21,37 @@ class ECommerceScreen extends StatelessWidget {
     );
   }
 
-  Row _buildToggleBar() {
+  Row _buildToggleBar(BuildContext context) {
     return Row(
       children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.all(5.0),
-          child: Text(
-            'Recommended',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 17,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(5.0),
-          child: Text(
-            'Formal Wear',
-            style: TextStyle(
-              color: Colors.white54,
-              fontSize: 17,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(5.0),
-          child: Text(
-            'Casual Wear',
-            style: TextStyle(
-              color: Colors.white54,
-              fontSize: 17,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
+        _buildToggleItem(context, 'Recommended', selected: true),
+        _buildToggleItem(context, 'Formal Wear'),
+        _buildToggleItem(context, 'Casual Wear'),
       ],
+    );
+  }
+
+  Padding _buildToggleItem(BuildContext context, String text,
+      {bool selected = false}) {
+    return Padding(
+      padding: const EdgeInsets.all(5.0),
+      child: Text(
+        text,
+        style: TextStyle(
+          fontSize: 17,
+          color: selected
+              ? null
+              : Theme.of(context).colorScheme.secondary.withOpacity(0.5),
+          fontWeight: selected ? FontWeight.bold : null,
+        ),
+      ),
     );
   }
 
   Container _buildProductTitle(BuildContext context) {
     return Container(
       height: 200,
-      color: Colors.white,
+      color: Theme.of(context).cardColor,
       child: Row(
         children: <Widget>[
           Image.asset(
@@ -95,7 +82,6 @@ class ECommerceScreen extends StatelessWidget {
 
   AppBar _buildAppBar() {
     return AppBar(
-      backgroundColor: Colors.purpleAccent,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(bottom: Radius.circular(30))),
       leading: Padding(
@@ -103,7 +89,6 @@ class ECommerceScreen extends StatelessWidget {
         child: Icon(Icons.home),
       ),
       title: Text('Let\'s go shopping!'),
-      elevation: 0,
       actions: <Widget>[
         Padding(
           padding: const EdgeInsets.all(20.0),
