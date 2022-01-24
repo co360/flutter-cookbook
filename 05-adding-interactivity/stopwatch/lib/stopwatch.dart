@@ -2,7 +2,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 class StopWatch extends StatefulWidget {
-  const StopWatch({Key? key}) : super(key: key);
+  final String? name;
+  final String? email;
+
+  const StopWatch({Key? key, this.name, this.email}) : super(key: key);
 
   @override
   _StopWatchState createState() => _StopWatchState();
