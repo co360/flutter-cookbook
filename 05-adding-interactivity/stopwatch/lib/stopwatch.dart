@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:stopwatch/platform_alert.dart';
 
 class StopWatch extends StatefulWidget {
   static const route = '/stopwatch';
@@ -95,14 +96,17 @@ class _StopWatchState extends State<StopWatch> {
         SizedBox(
           width: 20,
         ),
-        TextButton(
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
-            foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-          ),
-          onPressed: isTicking ? _stopTimer : null,
-          child: Text('Stop'),
-        ),
+        Builder(
+            builder: (context) => TextButton(
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.red),
+                    foregroundColor:
+                        MaterialStateProperty.all<Color>(Colors.white),
+                  ),
+                  onPressed: isTicking ? () => _stopTimer(context) : null,
+                  child: Text('Stop'),
+                )),
       ],
     );
   }
@@ -122,12 +126,39 @@ class _StopWatchState extends State<StopWatch> {
     });
   }
 
-  void _stopTimer() {
+  void _stopTimer(BuildContext context) {
     timer.cancel();
 
     setState(() {
       isTicking = false;
     });
+
+    showBottomSheet(context: context, builder: _buildRunCompleteSheet);
+  }
+
+  Widget _buildRunCompleteSheet(BuildContext context) {
+    final totalRuntime =
+        laps.fold<int>(milliseconds, (total, lap) => total + lap);
+    final textTheme = Theme.of(context).textTheme;
+
+    return SafeArea(
+        child: Container(
+      color: Theme.of(context).cardColor,
+      width: double.infinity,
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 30.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              'Run Finished!',
+              style: textTheme.headline6,
+            ),
+            Text('Total Run Time is ${_secondsText(totalRuntime)}.')
+          ],
+        ),
+      ),
+    ));
   }
 
   void _lap() {
